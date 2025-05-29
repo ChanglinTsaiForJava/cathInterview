@@ -8,6 +8,10 @@ import com.group.cathinterview.service.CoindeskServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -30,15 +34,21 @@ public class CoindeskServiceTest {
         ConvertedResponse result = service.getConvertedData();
         assertNotNull(result);
         // print out the result as the guidance indicates
-        System.out.println("轉換後資料（NotNull 測試）：" + result);
+        System.out.println("result of converted data test：" + result);
     }
 
     @Test
-    public void testConvertedDataTimeFormat() {
+    public void testUpdatedTimeFormatWithFormatter() {
         mockCurrencies();
         ConvertedResponse result = service.getConvertedData();
-        assertTrue(result.getUpdatedTime().matches("\\d{4}/\\d{2}/\\d{2} \\d{2}:\\d{2}:\\d{2}"));
-        System.out.println("更新時間格式測試：" + result.getUpdatedTime());
+        String timeStr = result.getUpdatedTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+        assertDoesNotThrow(() -> {
+            LocalDateTime parsedTime = LocalDateTime.parse(timeStr, formatter);
+            System.out.println("Time" + parsedTime);
+        }, "failed to parse time");
     }
 
     @Test
@@ -46,7 +56,7 @@ public class CoindeskServiceTest {
         mockCurrencies();
         ConvertedResponse result = service.getConvertedData();
         assertEquals(3, result.getCurrencyList().size());
-        System.out.println("幣別列表筆數：" + result.getCurrencyList().size());
+        System.out.println("***********  List of currencies：" + result.getCurrencyList().size()+" ***********");
 
     }
 
