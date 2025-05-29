@@ -19,6 +19,4 @@ public class Currency {
         private String code;
 
         private String mandarinName;
-
-
 }
