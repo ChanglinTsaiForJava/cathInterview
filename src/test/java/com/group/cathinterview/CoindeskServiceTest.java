@@ -29,6 +29,8 @@ public class CoindeskServiceTest {
         mockCurrencies();
         ConvertedResponse result = service.getConvertedData();
         assertNotNull(result);
+        // print out the result as the guidance indicates
+        System.out.println("轉換後資料（NotNull 測試）：" + result);
     }
 
     @Test
@@ -36,6 +38,7 @@ public class CoindeskServiceTest {
         mockCurrencies();
         ConvertedResponse result = service.getConvertedData();
         assertTrue(result.getUpdatedTime().matches("\\d{4}/\\d{2}/\\d{2} \\d{2}:\\d{2}:\\d{2}"));
+        System.out.println("更新時間格式測試：" + result.getUpdatedTime());
     }
 
     @Test
@@ -43,6 +46,8 @@ public class CoindeskServiceTest {
         mockCurrencies();
         ConvertedResponse result = service.getConvertedData();
         assertEquals(3, result.getCurrencyList().size());
+        System.out.println("幣別列表筆數：" + result.getCurrencyList().size());
+
     }
 
     @Test
@@ -56,15 +61,18 @@ public class CoindeskServiceTest {
 
         assertNotNull(usd);
         assertEquals("美元", usd.getName());
+        System.out.println("USD 幣別名稱：" + usd.getName());
+
     }
 
     @Test
     public void testCurrencyRateIsPositive() {
         mockCurrencies();
         ConvertedResponse result = service.getConvertedData();
-        result.getCurrencyList().forEach(item ->
-                assertTrue(item.getRate() > 0, item.getCode() + " 匯率不是正數")
-        );
+        result.getCurrencyList().forEach(item -> {
+            assertTrue(item.getRate() > 0, item.getCode() + " 匯率不是正數");
+            System.out.println(item.getCode() + " 匯率：" + item.getRate());
+        });
     }
 
     private void mockCurrencies() {
