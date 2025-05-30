@@ -31,8 +31,8 @@ public class CoindeskServiceImpl implements CoindeskService {
     }
     @Override
     public Map<String, Object> getRawData() {
-
         RestTemplate restTemplate = new RestTemplate();
+        // we send out a get method and convert the json response into a map<str, obj>
         return restTemplate.getForObject("https://kengp3.github.io/blog/coindesk.json", Map.class);
     }
 

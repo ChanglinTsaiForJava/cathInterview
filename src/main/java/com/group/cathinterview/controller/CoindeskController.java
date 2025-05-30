@@ -3,7 +3,6 @@ package com.group.cathinterview.controller;
 import com.group.cathinterview.DTO.ConvertedResponse;
 import com.group.cathinterview.service.CoindeskService;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +20,10 @@ public class CoindeskController {
     public Map<String, Object> getRawData() {
         return coindeskService.getRawData();
     }
+
     @GetMapping("/converted")
     public ConvertedResponse getConverted() {
         return coindeskService.getConvertedData();
     }
+
 }

@@ -1,0 +1,24 @@
+required stuff:
+currency list CRUD API
+1.
+    Entity currency: DONE
+    properties: code of the currency/ mandarin name
+
+    Repository:DONE
+    look for code
+
+    Service:DONE
+    CRUD method
+
+    Controller:DONE
+
+
+2.
+    show ref detail
+    ref:"https://kengp3.github.io/blog/coindesk.json"
+    need to see how to retrieve the data provided from ref
+
+
+3.
+    show the converted data with mandarin name
+    
