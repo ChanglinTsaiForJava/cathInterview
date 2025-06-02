@@ -14,11 +14,21 @@ currency list CRUD API
 
 
 2.
-    show ref detail
+    Show ref detail
     ref:"https://kengp3.github.io/blog/coindesk.json"
     need to see how to retrieve the data provided from ref
 
 
 3.
-    show the converted data with mandarin name
+    S how the converted data with mandarin name and details
+
+
+4.
+    UnitTest
+    1. 針對資料轉換相關邏輯作單元測試。
+    2. 測試呼叫幣別對應表資料 CRUD API，並顯示其內容。
+    3. 測試呼叫 coindesk API，並顯示其內容。
+    4. 測試呼叫資料轉換的 API，並顯示其內容。
+
+
     
